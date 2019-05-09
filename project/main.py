@@ -41,7 +41,7 @@ if USE_CUDA:
 
 
 #################### Learning to learn (优化optimizee) ######################
-Global_Train_Steps = 200
+Global_Train_Steps = 20
 Optimizee_Train_Steps = 100
 UnRoll_STEPS = 20
 Evaluate_period = 1
@@ -94,6 +94,7 @@ for _ in range(3):
     adam_losses, adam_sum_loss = Adam_Learner()
     lstm_losses, lstm_sum_loss = LSTM_learner()
 
+    fig = plt.figure()
     p1, = plt.plot(x, sgd_losses, label='SGD')
     p2, = plt.plot(x, rms_losses, label='RMS')
     p3, = plt.plot(x, adam_losses, label='Adam')
@@ -102,4 +103,5 @@ for _ in range(3):
     plt.legend(handles=[p1, p2, p3, p4])
     plt.title('Losses')
     plt.show()
+    fig.savefig('results.png')
     print("\n\nsum_loss:sgd={},rms={},adam={},lstm={}".format(sgd_sum_loss,rms_sum_loss,adam_sum_loss,lstm_sum_loss ))
