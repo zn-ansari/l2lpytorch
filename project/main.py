@@ -5,7 +5,7 @@ from optim import SGD, RMS, adam
 from learner import Learner
 from CoordinateWiseLSTM import LSTM_Optimizee_Model
 from learning_to_learn import Learning_to_learn_global_training
-from cuda import USE_CUDA 
+from cuda import USE_CUDA
 
 #####################      优化问题   ##########################
 def f(W,Y,x):
@@ -41,7 +41,7 @@ if USE_CUDA:
 
 
 #################### Learning to learn (优化optimizee) ######################
-Global_Train_Steps = 2000
+Global_Train_Steps = 200
 Optimizee_Train_Steps = 100
 UnRoll_STEPS = 20
 Evaluate_period = 1
@@ -67,13 +67,14 @@ if flag ==True :
 import numpy as np
 import matplotlib
 import matplotlib.pyplot as plt
-#import seaborn as sns; #sns.set(color_codes=True)
-#sns.set_style("white")
-#Global_T = np.arange(len(global_loss_list))
-#p1, = plt.plot(Global_T, global_loss_list, label='Global_graph_loss')
-#plt.legend(handles=[p1])
-#plt.title('Training LSTM optimizee by gradient descent ')
-#plt.show()
+import seaborn as sns
+sns.set(color_codes=True)
+sns.set_style("white")
+Global_T = np.arange(len(global_loss_list))
+p1, = plt.plot(Global_T, global_loss_list, label='Global_graph_loss')
+plt.legend(handles=[p1])
+plt.title('Training LSTM optimizee by gradient descent ')
+plt.show()
 
 
 STEPS = 100
@@ -97,8 +98,8 @@ for _ in range(3):
     p2, = plt.plot(x, rms_losses, label='RMS')
     p3, = plt.plot(x, adam_losses, label='Adam')
     p4, = plt.plot(x, lstm_losses, label='LSTM')
-    #plt.yscale('log')
-    #plt.legend(handles=[p1, p2, p3, p4])
-    #plt.title('Losses')
-    #plt.show()
-    #print("\n\nsum_loss:sgd={},rms={},adam={},lstm={}".format(sgd_sum_loss,rms_sum_loss,adam_sum_loss,lstm_sum_loss ))
+    plt.yscale('log')
+    plt.legend(handles=[p1, p2, p3, p4])
+    plt.title('Losses')
+    plt.show()
+    print("\n\nsum_loss:sgd={},rms={},adam={},lstm={}".format(sgd_sum_loss,rms_sum_loss,adam_sum_loss,lstm_sum_loss ))
